@@ -39,9 +39,12 @@ public class Order {
     @Column(name = "is_active", columnDefinition = "boolean default true")
     private boolean isActive;
 
+    @Column(scale = 2)
+    private Double price;
+
     @NotNull
-    @ManyToOne
-    private Customer customer;
+    @OneToMany
+    private List<Customer>customers;
 
     @NotNull
     @OneToMany

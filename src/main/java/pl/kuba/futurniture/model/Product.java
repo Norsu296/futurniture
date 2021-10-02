@@ -17,8 +17,6 @@ public class Product {
     @NotNull
     @Size(min = 3, max = 50)
     private String name;
-    @Column(scale = 2)
-    private Double price;
     private String description;
     @Column(columnDefinition = "int default 0")
     private Long popularity;
