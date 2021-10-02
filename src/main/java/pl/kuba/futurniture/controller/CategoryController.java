@@ -3,9 +3,11 @@ package pl.kuba.futurniture.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.kuba.futurniture.model.Category;
 import pl.kuba.futurniture.repository.CategoryRepository;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/app/category")
@@ -18,6 +20,17 @@ public class CategoryController {
     public String findAllCategories(Model model){
         model.addAttribute("categories", categoryRepository.findAll());
         return "category";
+    }
+    @GetMapping("/add")
+    public String addForm(Model model){
+        model.addAttribute("category", new Category());
+        return "category-add";
+    }
+
+    @PostMapping("/add")
+    public String addCategory(Category category){
+        categoryRepository.save(category);
+        return "redirect:/app/category";
     }
 
 
