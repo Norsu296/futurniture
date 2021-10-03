@@ -31,16 +31,16 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${categories}" var="category" varStatus="status">
-                    <tr>
-                        <td>${status.count}</td>
-                        <td>${category.name}</td>
-                        <td>
-                            <button class="btn btn-info">Edytuj</button>
-                            <button class="btn btn-primary">Produkty</button>
-                            <a href="/app/category/delete/${category.id}" class="btn btn-danger">Usuń</a>
-                        </td>
+                        <tr>
+                            <td>${status.count}</td>
+                            <td>${category.name}</td>
+                            <td>
+                                <a href="/app/category/edit/${category.id}" class="btn btn-info">Edytuj</a>
+                                <button class="btn btn-primary">Produkty</button>
+                                <a href="/app/category/delete/${category.id}" class="btn btn-danger">Usuń</a>
+                            </td>
 
-                    </tr>
+                        </tr>
                     </c:forEach>
                     </tbody>
                 </table>

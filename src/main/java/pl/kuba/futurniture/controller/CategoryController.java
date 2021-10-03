@@ -44,6 +44,22 @@ public class CategoryController {
         }
         return "redirect:/app/category";
     }
+    @GetMapping("/edit/{id}")
+    public String editCategory(@PathVariable Long id, Model model){
+        model.addAttribute("category", categoryRepository.findById(id));
+        return "category-add";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editCategory(@PathVariable Long id, @Valid Category category, BindingResult result){
+        if(result.hasErrors()){
+            return "category-edit";
+        }
+        Category editCategory = categoryRepository.findById(id).get();
+        editCategory.setName(category.getName());
+        categoryRepository.save(editCategory);
+        return "redirect:/app/category";
+    }
 
 
 }

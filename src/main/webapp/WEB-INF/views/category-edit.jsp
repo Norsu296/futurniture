@@ -23,7 +23,7 @@
                     </div>
 
                 </div>
-                <input value="Dodaj" type="submit" class="btn btn-primary"></input>
+                <input value="Edytuj" type="submit" class="btn btn-primary"></input>
             </form:form>
         </main>
     </div>
