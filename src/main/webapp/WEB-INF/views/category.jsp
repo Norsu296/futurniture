@@ -19,6 +19,7 @@
                 </div>
             </div>
             <h2>Informacje</h2>
+            <h3 class="text-info">${message}</h3>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
 
@@ -34,7 +35,11 @@
                     <tr>
                         <td>${category.id}</td>
                         <td>${category.name}</td>
-                        <td><button class="btn btn-info">Edytuj</button><button class="btn btn-danger">Usuń</button> </td>
+                        <td>
+                            <button class="btn btn-info">Edytuj</button>
+                            <button class="btn btn-primary">Produkty</button>
+                            <a href="/app/category/delete/${category.id}" class="btn btn-danger">Usuń</a>
+                        </td>
 
                     </tr>
                     </c:forEach>

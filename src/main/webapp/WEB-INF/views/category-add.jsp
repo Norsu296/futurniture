@@ -18,6 +18,10 @@
                 <div class="form-group">
                     <label for="name">Nazwa kategorii</label>
                     <form:input path="name" type="text" class="form-control" id="name" placeholder="Nazwa kategorii" />
+                    <div class="text-danger">
+                        <form:errors path="name"/>
+                    </div>
+
                 </div>
                 <input value="Dodaj" type="submit" class="btn btn-primary"></input>
             </form:form>
