@@ -41,7 +41,7 @@ public class Customer {
     @Email
     private String email;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
 
 }

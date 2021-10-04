@@ -55,5 +55,14 @@ public class CustomerController {
         return "redirect:/app/customer";
     }
 
+    //Rozwiązać problem usuwania gdy klient złożył zamówienie
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        if(customerRepository.existsById(id)){
+            customerRepository.deleteById(id);
+        }
+        return "redirect:/app/customer";
+    }
+
 
 }
