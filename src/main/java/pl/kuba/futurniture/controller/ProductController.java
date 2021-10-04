@@ -49,6 +49,21 @@ public class ProductController {
         return "redirect:/app/product";
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model){
+        model.addAttribute("product", productRepository.findById(id));
+        return "product-edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editProduct(@PathVariable Long id, @Valid Product product, BindingResult result){
+        if(result.hasErrors()){
+            return "product-edit";
+        }
+       productRepository.save(product);
+        return "redirect:/app/product";
+    }
+
     @ModelAttribute("categories")
     public List<Category> categoryList(){
         return categoryRepository.findAll();

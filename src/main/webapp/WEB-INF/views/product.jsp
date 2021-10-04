@@ -39,7 +39,7 @@
                             <td>${product.description}</td>
                             <td>${product.category.name}</td>
                             <td>
-                                <button class="btn btn-info">Edytuj</button>
+                                <a href="/app/product/edit/${product.id}" class="btn btn-info">Edytuj</a>
                                 <a href="/app/product/delete/${product.id}" class="btn btn-danger">Usuń</a>
                             </td>
 
