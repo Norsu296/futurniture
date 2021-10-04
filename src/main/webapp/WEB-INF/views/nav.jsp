@@ -47,7 +47,7 @@
             <div class="collapse" id="collapseProducts">
                 <div class="card card-body">
                     <li class="nav-item">
-                        <a class="nav-link" href="/product">
+                        <a class="nav-link" href="/app/product">
                             <i class="fas fa-angle-right"></i>
                             Wszystkie
                         </a>

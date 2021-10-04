@@ -53,6 +53,7 @@ public class CategoryController {
         }
         return "redirect:/app/category";
     }
+
     @GetMapping("/edit/{id}")
     public String editCategory(@PathVariable Long id, Model model){
         model.addAttribute("category", categoryRepository.findById(id));

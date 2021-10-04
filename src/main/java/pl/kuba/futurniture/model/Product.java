@@ -15,7 +15,7 @@ public class Product {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Size(min = 3, max = 50)
+    @Size(min = 3, max = 50, message = "Nazwa musi mieć minimum 3 znaki, maksymalnie 50!")
     private String name;
     private String description;
     @Column(columnDefinition = "int default 0")
