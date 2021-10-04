@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.kuba.futurniture.model.Category;
 import pl.kuba.futurniture.model.Product;
 import pl.kuba.futurniture.repository.CategoryRepository;
@@ -36,11 +33,19 @@ public class ProductController {
         return "product-add";
     }
     @PostMapping("/add")
-    public String addCategory(@Valid Product product, BindingResult result){
+    public String add(@Valid Product product, BindingResult result){
         if(result.hasErrors()){
             return "product-add";
         }
         productRepository.save(product);
+        return "redirect:/app/product";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        if(productRepository.existsById(id)){
+            productRepository.deleteById(id);
+        }
         return "redirect:/app/product";
     }
 

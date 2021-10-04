@@ -40,7 +40,7 @@
                             <td>${product.category.name}</td>
                             <td>
                                 <button class="btn btn-info">Edytuj</button>
-                                <a href="/app/category/delete/${product.id}" class="btn btn-danger">Usuń</a>
+                                <a href="/app/product/delete/${product.id}" class="btn btn-danger">Usuń</a>
                             </td>
 
                         </tr>
