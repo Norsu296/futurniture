@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kuba.futurniture.model.Customer;
+import pl.kuba.futurniture.model.Product;
 import pl.kuba.futurniture.repository.CustomerRepository;
 
 import javax.validation.Valid;
@@ -34,6 +36,20 @@ public class CustomerController {
     public String add(@Valid Customer customer, BindingResult result){
         if(result.hasErrors()){
             return "customer-add";
+        }
+        customerRepository.save(customer);
+        return "redirect:/app/customer";
+    }
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model){
+        model.addAttribute("customer", customerRepository.findById(id));
+        return "customer-edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editProduct(@PathVariable Long id, @Valid Customer customer, BindingResult result){
+        if(result.hasErrors()){
+            return "customer-edit";
         }
         customerRepository.save(customer);
         return "redirect:/app/customer";

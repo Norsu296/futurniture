@@ -15,7 +15,7 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Klienci</h1>
                 <div class="btn-group me-2">
-                    <a href="/app/category/add" class="btn btn-sm btn-outline-secondary">Dodaj klienta</a>
+                    <a href="/app/customer/add" class="btn btn-sm btn-outline-secondary">Dodaj klienta</a>
                 </div>
             </div>
             <h2>Wszyscy klienci</h2>
@@ -49,8 +49,8 @@
                             <td>${customer.street}</td>
                             <td>${customer.number}</td>
                             <td>
-                                <button class="btn btn-info">Edytuj</button>
-                                <a href="/app/category/delete/${product.id}" class="btn btn-danger">Usuń</a>
+                                <a href="/app/customer/edit/${customer.id}" class="btn btn-info">Edytuj</a>
+                                <a href="/app/customer/delete/${customer.id}" class="btn btn-danger">Usuń</a>
                             </td>
 
                         </tr>
