@@ -43,11 +43,11 @@ public class Order {
     private Double price;
 
     @NotNull
-    @OneToMany
+    @ManyToMany
     private List<Customer>customers;
 
     @NotNull
-    @OneToMany
+    @ManyToMany
     private List<Product> products;
 
     @PrePersist

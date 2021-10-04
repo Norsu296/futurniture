@@ -5,21 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.kuba.futurniture.model.Customer;
-import pl.kuba.futurniture.repository.CustomerRepository;
+import pl.kuba.futurniture.repository.OrderRepository;
 
 @Controller
-@RequestMapping("/app/customer")
+@RequestMapping("/app/order")
 @RequiredArgsConstructor
-public class CustomerController {
+public class OrderController {
 
-    private final CustomerRepository customerRepository;
+    private final OrderRepository orderRepository;
 
     @GetMapping
     public String findAll(Model model){
-        model.addAttribute("customers", customerRepository.findAll());
-        return "customer";
+        model.addAttribute("orders",orderRepository.findAll());
+        System.out.println(orderRepository.findAll());
+        return "order";
     }
-
-
 }

@@ -5,11 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import pl.kuba.futurniture.model.Category;
 import pl.kuba.futurniture.repository.CategoryRepository;
 
 
 import javax.validation.Valid;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @Controller
 @RequestMapping("/app/category")
@@ -37,17 +40,23 @@ public class CategoryController {
         categoryRepository.save(category);
         return "redirect:/app/category";
     }
+    //Poprawić przekazywanie modelu do widoku
     @GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable Long id){
+    public String deleteCategory(@PathVariable Long id, Model model){
         if(categoryRepository.existsById(id)){
-            categoryRepository.deleteById(id);
+            try{
+                categoryRepository.deleteById(id);
+            }catch (Exception e){
+                model.addAttribute("message", "Nie można usunąć kategorii która ma produkty!");
+            }
+
         }
         return "redirect:/app/category";
     }
     @GetMapping("/edit/{id}")
     public String editCategory(@PathVariable Long id, Model model){
         model.addAttribute("category", categoryRepository.findById(id));
-        return "category-add";
+        return "category-edit";
     }
 
     @PostMapping("/edit/{id}")
