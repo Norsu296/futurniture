@@ -62,7 +62,7 @@
             </div>
             <hr>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/app/customer">
                     <i class="fas fa-users"></i>
                     Klienci
                 </a>
