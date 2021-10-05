@@ -27,22 +27,40 @@
                         <th scope="col">#</th>
                         <th scope="col">Imię</th>
                         <th scope="col">Nazwisko</th>
-                        <th scope="col">Opłacone</th>
+                        <th scope="col">Płatność</th>
                         <th scope="col">Dodano</th>
                         <th scope="col">Planowana data dostawy</th>
                         <th scope="col">Wartość zamówienia</th>
+                        <th scope="col">Akcja</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${orders}" var="order" varStatus="status">
                         <tr>
                             <td>${status.count}</td>
+                            <td>${order.customer.name}</td>
+                            <td>${order.customer.surname}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${order.paid == true}">
+                                        Opłacone
+                                    </c:when>
+                                    <c:otherwise>
+                                        Płatne przy odbiorze
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </td>
                             <td>${order.startDate}</td>
                             <td>${order.shipDate}</td>
                             <td>${order.price}</td>
                             <td>
-                                <button class="btn btn-info">Edytuj</button>
-                                <a href="/app/category/delete/${product.id}" class="btn btn-danger">Usuń</a>
+                                <div class="btn-group">
+                                    <a href="/app/category/finish/${order.id}" class="btn btn-success">Zakończ</a>
+                                    <a href="/app/category/edit/${order.id}" class="btn btn-info">Edytuj</a>
+                                    <a href="/app/category/details/${order.id}" class="btn btn-warning">Szczegóły</a>
+                                    <a href="/app/category/delete/${order.id}" class="btn btn-danger">Usuń</a>
+                                </div>
                             </td>
 
                         </tr>
