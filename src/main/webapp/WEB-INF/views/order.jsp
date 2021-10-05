@@ -15,7 +15,7 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Zamówienia</h1>
                 <div class="btn-group me-2">
-                    <a href="/app/category/add" class="btn btn-sm btn-outline-secondary">Nowe zamówienie</a>
+                    <a href="/app/order/add" class="btn btn-sm btn-outline-secondary">Nowe zamówienie</a>
                 </div>
             </div>
             <h2>Wszystkie zamówienia</h2>
@@ -56,10 +56,10 @@
                             <td>${order.price}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="/app/category/finish/${order.id}" class="btn btn-success">Zakończ</a>
-                                    <a href="/app/category/edit/${order.id}" class="btn btn-info">Edytuj</a>
-                                    <a href="/app/category/details/${order.id}" class="btn btn-warning">Szczegóły</a>
-                                    <a href="/app/category/delete/${order.id}" class="btn btn-danger">Usuń</a>
+                                    <a href="/app/order/finish/${order.id}" class="btn btn-success">Zakończ</a>
+                                    <a href="/app/order/edit/${order.id}" class="btn btn-info">Edytuj</a>
+                                    <a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a>
+                                    <a href="/app/order/delete/${order.id}" class="btn btn-danger">Usuń</a>
                                 </div>
                             </td>
 

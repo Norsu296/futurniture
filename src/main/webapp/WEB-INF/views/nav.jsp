@@ -30,7 +30,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/app/order">
                             <i class="fas fa-angle-right"></i>
                             Wszystkie
                         </a>
