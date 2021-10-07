@@ -38,7 +38,10 @@
                     <div id="select">
                         <form:select path="products" items="${products}" itemLabel="productInformation" itemValue="id" size="10"/>
                     </div>
-                    <input value="Dodaj" type="submit" class="btn btn-primary"></input>
+                    <div class="btn-group">
+                        <input value="Dodaj" type="submit" class="btn btn-primary"></input>
+                        <a href="/app/order" class="btn btn-danger">Anuluj</a>
+                    </div>
                 </form:form>
             </div>
 

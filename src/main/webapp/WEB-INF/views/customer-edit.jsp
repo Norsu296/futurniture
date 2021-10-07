@@ -64,7 +64,10 @@
                             <form:input type="text" path="number" class="form-control" id="number" placeholder="Numer domu"/>
                         </div>
                     </div>
-                    <input value="Edytuj" type="submit" class="btn btn-primary"></input>
+                    <div class="btn-group">
+                        <input value="Edytuj" type="submit" class="btn btn-primary"></input>
+                        <a href="/app/customer" class="btn btn-danger">Anuluj</a>
+                    </div>
                 </form:form>
             </div>
         </main>

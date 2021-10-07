@@ -19,7 +19,7 @@
             </div>
             <div class="orderConfirmation">
                 <div class="container-fluid d-flex flex-wrap justify-content-between" id="orderHeader">
-                    <div class="h4">Potwierdzenie zamówienia</div><div class="h5">Zamówienie numer 123</div>
+                    <div class="h4">Potwierdzenie zamówienia</div><div class="h5">Zamówienie numer ${order.id}/2021</div>
                 </div>
                 <hr>
                 <div class="customer container-fluid">
