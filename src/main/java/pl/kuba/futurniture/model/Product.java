@@ -23,7 +23,9 @@ public class Product {
     @ManyToOne
     private Category category;
 
-
+    public String getProductInformation(){
+        return String.format("%s, %s, %s", this.name, this.description, this.category.getName());
+    }
 
 
 }

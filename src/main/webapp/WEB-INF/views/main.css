@@ -114,7 +114,14 @@ body {
     border-color: transparent;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
-
+/*
+ * views
+ */
 .details {
     padding: 20px 10px 20px 10px;
+}
+
+.productSelect {
+    width: 200px;
+    height: 500px;
 }

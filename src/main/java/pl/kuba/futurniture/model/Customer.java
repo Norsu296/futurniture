@@ -41,4 +41,8 @@ public class Customer {
     @Email
     private String email;
 
+    public String getCustomerInformation(){
+        return String.format("%s %s, %s %s %d",this.name,this.surname,this.city,this.street,this.number);
+    }
+
 }

@@ -2,8 +2,10 @@ package pl.kuba.futurniture.model;
 
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
@@ -27,8 +29,8 @@ public class Order {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @NotNull
     @Column(name = "ship_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate shipDate;
 
     @NotNull
@@ -39,6 +41,7 @@ public class Order {
     @Column(name = "is_active", columnDefinition = "boolean default true")
     private boolean isActive;
 
+    @NotNull
     @Column(scale = 2)
     private Double price;
 
@@ -47,7 +50,7 @@ public class Order {
     private Customer customer;
 
     @NotNull
-    @OneToMany
+    @ManyToMany
     private List<Product> products;
 
     @PrePersist
