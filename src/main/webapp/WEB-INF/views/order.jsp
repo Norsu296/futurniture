@@ -56,7 +56,7 @@
                             <td>${order.price}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="/app/order/finish/${order.id}" class="btn btn-success">Zakończ</a>
+                                    <a href="/app/order/end/${order.id}" class="btn btn-success">Zakończ</a>
                                     <a href="/app/order/edit/${order.id}" class="btn btn-info">Edytuj</a>
                                     <a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a>
                                     <a href="/app/order/delete/${order.id}" class="btn btn-danger">Usuń</a>

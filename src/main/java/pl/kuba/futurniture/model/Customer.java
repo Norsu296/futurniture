@@ -41,6 +41,12 @@ public class Customer {
     @Email
     private String email;
 
+    public String getFullName(){
+        return String.format("%s %s", this.name,this.surname);
+    }
+    public String getAddress(){
+        return String.format("%s,%s,%s,%d", this.city, this.postCode, this.street, this.number);
+    }
     public String getCustomerInformation(){
         return String.format("%s %s, %s %s %d",this.name,this.surname,this.city,this.street,this.number);
     }

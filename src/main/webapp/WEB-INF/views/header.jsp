@@ -15,7 +15,7 @@
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/fcb2a487a2.js" crossorigin="anonymous"></script>
     <!-- Custom styles for this template -->
-    <link href="<c:url value="/main.css" />" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">

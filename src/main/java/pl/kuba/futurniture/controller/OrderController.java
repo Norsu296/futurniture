@@ -1,7 +1,6 @@
 package pl.kuba.futurniture.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,7 +53,7 @@ public class OrderController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model){
-        model.addAttribute("order", orderRepository.findById(id));
+        model.addAttribute("order", orderRepository.findById(id).get());
         return "order-edit";
     }
 
@@ -66,7 +65,34 @@ public class OrderController {
         orderRepository.save(order);
         return "redirect:/app/order";
     }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        if(orderRepository.existsById(id)){
+            orderRepository.deleteById(id);
+        }
+        return "redirect:/app/order";
+    }
 
+    @GetMapping("/end/{id}")
+    public String endView(@PathVariable Long id, Model model){
+        model.addAttribute("order", orderRepository.findById(id).get());
+        return "order-end";
+    }
+
+    @GetMapping("/end/{id}/print")
+    public String print(@PathVariable Long id, Model model){
+        model.addAttribute("order", orderRepository.findById(id).get());
+        return "order-print";
+    }
+    @GetMapping("/finish/{id}")
+    public String finish(@PathVariable Long id){
+        if(orderRepository.existsById(id)){
+            Order order = orderRepository.getById(id);
+            order.setActive(false);
+            orderRepository.save(order);
+        }
+        return "redirect:/app/order";
+    }
 
     @ModelAttribute("customers")
     public List<Customer> customerList(){

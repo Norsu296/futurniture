@@ -19,11 +19,11 @@
                 </div>
             </div>
             <div class="orderDetails">
-                <p><span class="title bg-secondary text-light mx-5 px-5">Klient </span><span class="content bg-light text-dark">${order.customer.name} ${order.customer.surname}</span></p>
+                <p><span class="title bg-secondary text-light mx-5 px-5">Klient </span><span class="content bg-light text-dark">${order.customer.fullName}</span></p>
                 <p><span class="title bg-secondary text-light mx-5 px-5">Kontakt </span><span class="content bg-light text-dark">Telefon: ${order.customer.phone} Email: ${order.customer.email}</span></p>
                 <p><span class="title bg-secondary text-light mx-5 px-5">Adres dostawy </span>
                     <span class="content">
-                        ${order.customer.postCode} ${order.customer.city} ${order.customer.street} ${order.customer.number}
+                        ${order.customer.address} ${order.customer.number}
                     </span>
                 </p>
                 <p><span class="title bg-secondary text-light mx-5 px-5">Termin realizacji: </span><span class="content bg-light text-dark">${order.shipDate}</span></p>
