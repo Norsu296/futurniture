@@ -13,6 +13,7 @@ import pl.kuba.futurniture.repository.OrderRepository;
 import pl.kuba.futurniture.repository.ProductRepository;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -89,6 +90,7 @@ public class OrderController {
         if(orderRepository.existsById(id)){
             Order order = orderRepository.getById(id);
             order.setActive(false);
+            order.setEndDate(LocalDate.now());
             orderRepository.save(order);
         }
         return "redirect:/app/order";

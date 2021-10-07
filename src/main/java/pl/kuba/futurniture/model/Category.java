@@ -17,6 +17,7 @@ public class Category {
     @Size(min = 3, message = "Kategoria musi mieć conajmniej 3 znaki!")
     private String name;
     @OneToMany
+    @JoinColumn(name="product_id")
     List<Product> products;
 
 }

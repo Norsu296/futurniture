@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -29,6 +30,7 @@ public class Order {
     @Column(name = "end_date")
     private LocalDate endDate;
 
+    @Future(message = "Data musi być z przyszłości")
     @Column(name = "ship_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate shipDate;
@@ -45,11 +47,12 @@ public class Order {
     @Column(scale = 2)
     private Double price;
 
-    @NotNull
+
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @NotNull
+
     @ManyToMany
     private List<Product> products;
 
@@ -57,11 +60,7 @@ public class Order {
     public void prePersist(){
         startDate = LocalDate.now();
     }
-    @PreUpdate
-    public void preUpdate(){
-        endDate = LocalDate.now();
-        isActive = false;
-    }
+
 
 
 

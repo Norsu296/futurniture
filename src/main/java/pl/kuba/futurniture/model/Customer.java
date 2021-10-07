@@ -3,10 +3,7 @@ package pl.kuba.futurniture.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
@@ -17,38 +14,47 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+
+    @NotBlank
     @Size(min = 3, max = 20, message = "Imię musi mieć długość od 3 do 20 znaków!")
     private String name;
-    @NotNull
+
+    @NotBlank
     @Size(min = 3, max = 20,  message = "Nazwisko musi mieć długość od 3 do 20 znaków!")
     private String surname;
-    @NotNull
+
+    @NotBlank
     @Size(min = 3, max = 20, message = "Miasto musi mieć długość od 3 do 20 znaków!")
     private String city;
-    @NotNull
+
+    @NotBlank
     @Pattern(regexp = "\\d{2}-\\d{3}", message = "Kod pocztowy musi być podany w formacie 00-000")
     private String postCode;
-    @NotNull
+
+    @NotBlank
     @Size(min = 3, max = 20, message = "Ulica musi mieć długość od 3 do 20 znaków!")
     private String street;
-    @NotNull
-    private int number;
-    @NotNull
+
+    @NotBlank
+    private String number;
+
+    @NotBlank
     @Size(min = 9, max = 10 , message = "Numer telefonu niepoprawny!")
     private String phone;
-    @NotNull
+
+    @NotBlank
     @Email
     private String email;
 
     public String getFullName(){
         return String.format("%s %s", this.name,this.surname);
     }
+
     public String getAddress(){
-        return String.format("%s,%s,%s,%d", this.city, this.postCode, this.street, this.number);
+        return String.format("%s,%s,%s,%s", this.city, this.postCode, this.street, this.number);
     }
     public String getCustomerInformation(){
-        return String.format("%s %s, %s %s %d",this.name,this.surname,this.city,this.street,this.number);
+        return String.format("%s %s, %s %s %s",this.name,this.surname,this.city,this.street,this.number);
     }
 
 }

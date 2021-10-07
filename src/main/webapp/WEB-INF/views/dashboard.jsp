@@ -16,9 +16,9 @@
                 <h1 class="h2">Podsumowanie</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Nowe zamówienie</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Nowy produkt</button>
-                        <button class="btn d-none" type="button" class="btn btn-sm btn-outline-secondary">Zakończ zamówienie</button>
+                        <a href="/app/order/add" class="btn btn-sm btn-outline-secondary">Nowe zamówienie</a>
+                        <a href="/app/product/add" class="btn btn-sm btn-outline-secondary">Nowy produkt</a>
+                        <a href="app/customer/add" class="btn btn-sm btn-outline-secondary">Nowy klient</a>
                     </div>
 
                 </div>
