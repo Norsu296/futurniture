@@ -32,15 +32,7 @@ public class OrderService {
     public Order findById(Long id){
         return orderRepository.findById(id).get();
     }
-    public List<Order> findDelayed(){
-        return orderRepository.findAllDelayedOrders(LocalDate.now());
-    }
-    public List<Order> findImportant(){
-        return orderRepository.findByisImportantTrue();
-    }
-    public List<Order> findActive(){
-        return orderRepository.findByisActiveTrue();
-    }
+
 
     public List<Order> filterByStatus(String status){
         if(status.equals("accepted")){

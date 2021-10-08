@@ -54,7 +54,8 @@
                     </div>
                 </div>
             </div>
-
+            <c:if test="${numberOfWaitingOrders != 0}">
+            <h2>Zamówienia oczekujące <span class="text-danger">${numberOfWaitingOrders}</span> </h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
 
@@ -67,10 +68,11 @@
                         <th scope="col">Dodano</th>
                         <th scope="col">Planowana data dostawy</th>
                         <th scope="col">Wartość zamówienia</th>
+                        <th scope="col">Akcja</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${lastOrders}" var="order" varStatus="status">
+                    <c:forEach items="${waitingOrders}" var="order" varStatus="status">
                         <tr>
                             <td>${status.count}</td>
                             <td>${order.customer.name}</td>
@@ -88,13 +90,15 @@
                             </td>
                             <td>${order.startDate}</td>
                             <td>${order.shipDate}</td>
-                            <td>${order.price}</td>
+                            <td>${order.price} zł</td>
+                            <td><a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a></td>
 
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
+            </c:if>
         </main>
     </div>
 </div>

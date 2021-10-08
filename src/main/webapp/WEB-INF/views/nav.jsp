@@ -9,34 +9,12 @@
                 </a>
             </li>
             <hr>
-            <li class="nav-item" data-bs-toggle="collapse" href="#collapseOrders" role="button">
-                <a class="nav-link" href="#">
+            <li class="nav-item">
+                <a class="nav-link" href="/app/order">
                     <i class="fas fa-dolly-flatbed"></i>
                     Zamówienia
                 </a>
             </li>
-            <div class="collapse" id="collapseOrders">
-                <div class="card card-body">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/app/order/important">
-                            <i class="fas fa-angle-right"></i>
-                            Pilne
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/app/order/active">
-                            <i class="fas fa-angle-right"></i>
-                            W realizacji
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/app/order">
-                            <i class="fas fa-angle-right"></i>
-                            Wszystkie
-                        </a>
-                    </li>
-                </div>
-            </div>
             <hr>
             <li class="nav-item" data-bs-toggle="collapse" href="#collapseProducts" role="button">
                 <a class="nav-link" href="#">

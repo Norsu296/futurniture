@@ -17,17 +17,10 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
 
-    List<Order> findByisActiveTrue();
-
     List<Order> findByisImportantTrue();
-
     @Query("SELECT o FROM Order o WHERE o.shipDate < :now AND o.orderStatus = 'inProgress'")
     List<Order> findAllDelayedOrders(@Param("now") LocalDate now);
-
-    List<Order> findTop5ByOrderByStartDateDesc();
-
     List<Order> findAllByOrderStatus(OrderStatus orderStatus);
-
     Optional<Order> findByProductsId(Long id);
 
 }
