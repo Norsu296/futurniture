@@ -19,6 +19,9 @@
                 </div>
             </div>
             <h2>Wszystkie zamówienia</h2>
+            <div class="text-danger">
+                ${errorMessage}
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
 

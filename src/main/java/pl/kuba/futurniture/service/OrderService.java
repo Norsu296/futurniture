@@ -60,4 +60,12 @@ public class OrderService {
         order.setOrderStatus(OrderStatus.inProgress);
         orderRepository.save(order);
     }
+
+    public boolean checkOrderStatusBeforeDeletion(Long id){
+        Order order = orderRepository.getById(id);
+        if(order.getOrderStatus() == OrderStatus.accepted || order.getOrderStatus() == OrderStatus.inProgress){
+            return false;
+        }
+        return true;
+    }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.kuba.futurniture.model.Customer;
 import pl.kuba.futurniture.model.Order;
 import pl.kuba.futurniture.model.Product;
@@ -70,8 +71,12 @@ public class OrderController {
         return "redirect:/app/order";
     }
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id){
-        orderService.remove(id);
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes){
+        if(orderService.checkOrderStatusBeforeDeletion(id)){
+            orderService.remove(id);
+        }else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Nie można usunąć zamówienia w trakcie realizacji!");
+        }
         return "redirect:/app/order";
     }
 
