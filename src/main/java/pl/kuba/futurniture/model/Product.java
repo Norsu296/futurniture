@@ -1,6 +1,7 @@
 package pl.kuba.futurniture.model;
 
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -13,8 +14,6 @@ import java.util.Set;
 
 @Entity
 @Table (name = "products")
-@SQLDelete(sql = "UPDATE products SET deleted = true WHERE id = ?")
-@Where(clause = "deleted=false")
 @Data
 public class Product {
 
@@ -28,13 +27,19 @@ public class Product {
 
     private String description;
 
-    private boolean deleted = Boolean.FALSE;
+    private boolean available;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @PrePersist
+    public void available(){
+        available = true;
+    }
+
     public String getProductInformation(){
         return String.format("%s, %s, %s", this.name, this.description, this.category.getName());
     }
+
 }

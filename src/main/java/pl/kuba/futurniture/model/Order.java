@@ -40,7 +40,7 @@ public class Order {
     private boolean isImportant;
 
     @NotNull
-    @Column(name = "is_active", columnDefinition = "boolean default true")
+    @Column(name = "is_active")
     private boolean isActive;
 
     @NotNull

@@ -17,6 +17,21 @@ import java.util.Optional;
 public class CategoryService {
 
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
+
+    public void save(Category category){
+        categoryRepository.save(category);
+    }
+    public void remove(Long id){
+        categoryRepository.deleteById(id);
+    }
+    public List<Category> findAll(){
+        return categoryRepository.findAll();
+    }
+    public Category findById(Long id){
+        return categoryRepository.findById(id).get();
+    }
+
 
     public boolean checkCategoryBindings(Long productId){
         if(productRepository.findById(productId).isPresent()){

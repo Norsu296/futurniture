@@ -9,8 +9,6 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table (name = "categories")
-@SQLDelete(sql = "UPDATE categories SET deleted = true WHERE id = ?")
-@Where(clause = "deleted=false")
 @Data
 public class Category {
 
@@ -19,7 +17,5 @@ public class Category {
     private Long id;
     @Size(min = 3, message = "Kategoria musi mieć conajmniej 3 znaki!")
     private String name;
-
-    private boolean deleted = Boolean.FALSE;
 
 }

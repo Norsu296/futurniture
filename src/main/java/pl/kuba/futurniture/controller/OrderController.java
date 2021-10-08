@@ -15,6 +15,7 @@ import pl.kuba.futurniture.repository.ProductRepository;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/app/order")
@@ -120,7 +121,7 @@ public class OrderController {
 
     @ModelAttribute("products")
     public List<Product> productList(){
-        return productRepository.findAll();
+        return productRepository.findAll().stream().filter(Product::isAvailable).collect(Collectors.toList());
     }
 
 }

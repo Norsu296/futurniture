@@ -31,6 +31,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Nazwa</th>
                         <th scope="col">Opis</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Kategoria</th>
                         <th scope="col">Akcja</th>
                     </tr>
@@ -41,10 +42,21 @@
                             <td>${status.count}</td>
                             <td>${product.name}</td>
                             <td>${product.description}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${product.available == true}">
+                                        Dostępny
+                                    </c:when>
+                                    <c:otherwise>
+                                        Niedostępny
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                             <td>${product.category.name}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="/app/product/edit/${product.id}" class="btn btn-info">Edytuj</a>
+                                    <a href="/app/product/available/${product.id}" class="btn btn-warning">Zmień status</a>
                                     <a href="/app/product/delete/${product.id}" class="btn btn-danger">Usuń</a>
                                 </div>
 
