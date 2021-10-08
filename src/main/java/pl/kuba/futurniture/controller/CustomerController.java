@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kuba.futurniture.model.Customer;
-import pl.kuba.futurniture.model.Product;
 import pl.kuba.futurniture.repository.CustomerRepository;
+import pl.kuba.futurniture.service.CustomerService;
 
 import javax.validation.Valid;
 
@@ -19,11 +19,11 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private final CustomerRepository customerRepository;
+    private final CustomerService customerService;
 
     @GetMapping
     public String findAll(Model model){
-        model.addAttribute("customers", customerRepository.findAll());
+        model.addAttribute("customers", customerService.findAll());
         return "customer";
     }
 
@@ -37,12 +37,12 @@ public class CustomerController {
         if(result.hasErrors()){
             return "customer-add";
         }
-        customerRepository.save(customer);
+        customerService.save(customer);
         return "redirect:/app/customer";
     }
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model){
-        model.addAttribute("customer", customerRepository.findById(id));
+        model.addAttribute("customer", customerService.findById(id));
         return "customer-edit";
     }
 
@@ -51,16 +51,13 @@ public class CustomerController {
         if(result.hasErrors()){
             return "customer-edit";
         }
-        customerRepository.save(customer);
+        customerService.save(customer);
         return "redirect:/app/customer";
     }
 
-    //Rozwiązać problem usuwania gdy klient złożył zamówienie
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
-        if(customerRepository.existsById(id)){
-            customerRepository.deleteById(id);
-        }
+            customerService.remove(id);
         return "redirect:/app/customer";
     }
 

@@ -11,6 +11,8 @@ import pl.kuba.futurniture.model.Product;
 import pl.kuba.futurniture.repository.CustomerRepository;
 import pl.kuba.futurniture.repository.OrderRepository;
 import pl.kuba.futurniture.repository.ProductRepository;
+import pl.kuba.futurniture.service.CustomerService;
+import pl.kuba.futurniture.service.OrderService;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -22,19 +24,19 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderRepository orderRepository;
-    private final CustomerRepository customerRepository;
-    private final ProductRepository productRepository;
+    private final OrderService orderService;
+    private final CustomerService customerService;
+
 
     @GetMapping
     public String findAll(Model model){
-        model.addAttribute("orders",orderRepository.findAll());
+        model.addAttribute("orders",orderService.findAll());
         return "order";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Long id, Model model){
-        model.addAttribute("order",orderRepository.findById(id).get());
+        model.addAttribute("order",orderService.findById(id));
         return "order-details";
     }
 
@@ -49,13 +51,13 @@ public class OrderController {
         if(result.hasErrors()){
             return "order-add";
         }
-        orderRepository.save(order);
+        orderService.save(order);
         return "redirect:/app/order";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model){
-        model.addAttribute("order", orderRepository.findById(id).get());
+        model.addAttribute("order", orderService.findById(id));
         return "order-edit";
     }
 
@@ -64,64 +66,57 @@ public class OrderController {
         if(result.hasErrors()){
             return "order-edit";
         }
-        orderRepository.save(order);
+        orderService.save(order);
         return "redirect:/app/order";
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
-        if(orderRepository.existsById(id)){
-            orderRepository.deleteById(id);
-        }
+        orderService.remove(id);
         return "redirect:/app/order";
     }
 
     @GetMapping("/end/{id}")
     public String endView(@PathVariable Long id, Model model){
-        model.addAttribute("order", orderRepository.findById(id).get());
+        model.addAttribute("order", orderService.findById(id));
         return "order-end";
     }
 
     @GetMapping("/end/{id}/print")
     public String print(@PathVariable Long id, Model model){
-        model.addAttribute("order", orderRepository.findById(id).get());
+        model.addAttribute("order", orderService.findById(id));
         return "order-print";
     }
     @GetMapping("/finish/{id}")
     public String finish(@PathVariable Long id){
-        if(orderRepository.existsById(id)){
-            Order order = orderRepository.getById(id);
-            order.setActive(false);
-            order.setEndDate(LocalDate.now());
-            orderRepository.save(order);
-        }
+        orderService.finish(id);
         return "redirect:/app/order";
     }
 
     @GetMapping("/delay")
     public String delayed(Model model){
-        model.addAttribute("ordersDelay", orderRepository.findAllDelayedOrders(LocalDate.now()));
+        model.addAttribute("ordersDelay", orderService.findDelayed());
         return "order-delay";
     }
     @GetMapping("/important")
     public String important(Model model){
-        model.addAttribute("ordersImportant", orderRepository.findByisImportantTrue());
+        model.addAttribute("ordersImportant", orderService.findImportant());
         return "order-important";
     }
     @GetMapping("/active")
     public String active(Model model){
-        model.addAttribute("ordersActive", orderRepository.findAll());
+        model.addAttribute("ordersActive", orderService.findActive());
         return "order-active";
     }
 
 
     @ModelAttribute("customers")
     public List<Customer> customerList(){
-        return customerRepository.findAll();
+        return customerService.findAll();
     }
 
     @ModelAttribute("products")
     public List<Product> productList(){
-        return productRepository.findAll().stream().filter(Product::isAvailable).collect(Collectors.toList());
+        return orderService.findAvailableProducts();
     }
 
 }
