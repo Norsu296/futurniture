@@ -41,6 +41,24 @@ public class OrderService {
     public List<Order> findActive(){
         return orderRepository.findByisActiveTrue();
     }
+
+    public List<Order> filterByStatus(String status){
+        if(status.equals("accepted")){
+            return orderRepository.findAllByOrderStatus(OrderStatus.accepted);
+        }else if(status.equals("inprogress")){
+            return orderRepository.findAllByOrderStatus(OrderStatus.inProgress);
+        }else if(status.equals("ended")){
+            return orderRepository.findAllByOrderStatus(OrderStatus.ended);
+        }else if(status.equals("important")){
+            return orderRepository.findByisImportantTrue();
+        }else if(status.equals("delayed")){
+            return orderRepository.findAllDelayedOrders(LocalDate.now());
+        }else{
+            return orderRepository.findAll();
+        }
+
+    }
+
     public List<Product> findAvailableProducts(){
         return productRepository.findAll()
                 .stream()

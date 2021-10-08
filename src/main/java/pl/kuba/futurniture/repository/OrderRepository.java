@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pl.kuba.futurniture.model.Order;
+import pl.kuba.futurniture.model.OrderStatus;
 import pl.kuba.futurniture.model.Product;
 
 import java.time.LocalDate;
@@ -20,11 +21,12 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByisImportantTrue();
 
-    @Query("SELECT o FROM Order o WHERE o.shipDate < :now")
+    @Query("SELECT o FROM Order o WHERE o.shipDate < :now AND o.orderStatus = 'inProgress'")
     List<Order> findAllDelayedOrders(@Param("now") LocalDate now);
 
     List<Order> findTop5ByOrderByStartDateDesc();
 
+    List<Order> findAllByOrderStatus(OrderStatus orderStatus);
 
     Optional<Order> findByProductsId(Long id);
 

@@ -18,12 +18,12 @@ public class MainPageController {
     private final OrderRepository orderRepository;
 
     @GetMapping("/app")
-    public String mainPage(Model model){
+    public String mainPage(Model model) {
         model.addAttribute("activeOrders", orderRepository.findByisActiveTrue());
         model.addAttribute("numberOfActiveOrders", orderRepository.findByisActiveTrue().size());
         model.addAttribute("numberOfDelayedOrders", orderRepository.findAllDelayedOrders(LocalDate.now()).size());
         model.addAttribute("numberOfAllOrders", orderRepository.findAll().size());
-        model.addAttribute("lastOrders",orderRepository.findTop5ByOrderByStartDateDesc());
+        model.addAttribute("lastOrders", orderRepository.findTop5ByOrderByStartDateDesc());
         return "dashboard";
     }
 
