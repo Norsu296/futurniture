@@ -107,6 +107,11 @@ public class OrderController {
         model.addAttribute("ordersActive", orderService.findActive());
         return "order/order-active";
     }
+    @GetMapping("/take/{id}")
+    public String take(@PathVariable Long id){
+        orderService.take(id);
+        return "redirect:/app/order";
+    }
 
 
     @ModelAttribute("customers")

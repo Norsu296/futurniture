@@ -26,8 +26,25 @@
                         ${order.customer.address} ${order.customer.number}
                     </span>
                 </p>
-                <p><span class="title bg-secondary text-light mx-5 px-5">Termin realizacji: </span><span class="content bg-light text-dark">${order.shipDate}</span></p>
-                <p><span class="title bg-secondary text-light mx-5 px-5">Dodatkowe informacje: </span><span class="content bg-light text-dark">${order.description}</span></p>
+                <p><span class="title bg-secondary text-light mx-5 px-5">Termin realizacji </span><span class="content bg-light text-dark">${order.shipDate}</span></p>
+                <p><span class="title bg-secondary text-light mx-5 px-5">Dodatkowe informacje </span><span class="content bg-light text-dark">${order.description}</span></p>
+                <p><span class="title bg-secondary text-light mx-5 px-5">Status zamówienia </span>
+                    <span class="content bg-light text-dark">
+                        <c:choose>
+                        <c:when test="${order.orderStatus == 'accepted'}">
+                            Przyjęte
+                        </c:when>
+                            <c:when test="${order.orderStatus == 'inProgress'}">
+                                W trakcie realizacji
+                            </c:when>
+                        <c:otherwise>
+                            Zakończone
+                        </c:otherwise>
+                    </c:choose></span></p>
+                <c:if test="${order.orderStatus == 'accepted'}">
+                    <a href="/app/order/take/${order.id}" class="btn btn-sm btn-outline-secondary">Rozpocznij</a>
+                </c:if>
+
 
             </div>
             <h3>Zamówione produkty</h3>

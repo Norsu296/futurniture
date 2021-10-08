@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.kuba.futurniture.model.Customer;
 import pl.kuba.futurniture.model.Order;
+import pl.kuba.futurniture.model.OrderStatus;
 import pl.kuba.futurniture.model.Product;
 import pl.kuba.futurniture.repository.OrderRepository;
 import pl.kuba.futurniture.repository.ProductRepository;
@@ -50,6 +51,13 @@ public class OrderService {
         Order order = orderRepository.getById(id);
         order.setActive(false);
         order.setEndDate(LocalDate.now());
+        order.setOrderStatus(OrderStatus.ended);
+        orderRepository.save(order);
+    }
+
+    public void take(Long id){
+        Order order = orderRepository.getById(id);
+        order.setOrderStatus(OrderStatus.inProgress);
         orderRepository.save(order);
     }
 }
