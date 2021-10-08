@@ -38,6 +38,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${customers}" var="customer" varStatus="status">
+                        <c:if test="${customer.deleted == false}">
                         <tr>
                             <td>${status.count}</td>
                             <td>${customer.name}</td>
@@ -56,6 +57,7 @@
                             </td>
 
                         </tr>
+                        </c:if>
                     </c:forEach>
                     </tbody>
                 </table>

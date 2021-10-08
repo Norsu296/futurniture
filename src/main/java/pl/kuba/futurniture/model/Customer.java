@@ -1,6 +1,7 @@
 package pl.kuba.futurniture.model;
 
 import lombok.Data;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table (name = "customers")
+@SQLDelete(sql = "UPDATE customers SET deleted = true WHERE id = ?")
 @Data
 public class Customer {
 
@@ -38,6 +40,8 @@ public class Customer {
     @NotBlank
     private String number;
 
+    private boolean deleted;
+
     @NotBlank
     @Size(min = 9, max = 10 , message = "Numer telefonu niepoprawny!")
     private String phone;
@@ -46,6 +50,10 @@ public class Customer {
     @Email
     private String email;
 
+    @PrePersist
+    public void deleted(){
+        deleted = false;
+    }
     public String getFullName(){
         return String.format("%s %s", this.name,this.surname);
     }
