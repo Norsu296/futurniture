@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.kuba.futurniture.model.Category;
 import pl.kuba.futurniture.repository.CategoryRepository;
+import pl.kuba.futurniture.service.CategoryService;
 
 
 import javax.validation.Valid;
@@ -20,6 +22,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
 
     @GetMapping
     public String findAll(Model model){
@@ -40,14 +43,14 @@ public class CategoryController {
         categoryRepository.save(category);
         return "redirect:/app/category";
     }
-    //Poprawić przekazywanie modelu do widoku
+
     @GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable Long id, Model model){
+    public String deleteCategory(@PathVariable Long id, RedirectAttributes redirectAttributes){
         if(categoryRepository.existsById(id)){
-            try{
+            if(categoryService.checkCategoryBindings(id)){
                 categoryRepository.deleteById(id);
-            }catch (Exception e){
-                model.addAttribute("message", "Nie można usunąć kategorii która ma produkty!");
+            }else{
+                redirectAttributes.addFlashAttribute("errorMessage", "Nie można usunąć kategorii która ma produkty!");
             }
 
         }
@@ -70,6 +73,7 @@ public class CategoryController {
         categoryRepository.save(editCategory);
         return "redirect:/app/category";
     }
+
 
 
 }

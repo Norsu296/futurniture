@@ -59,6 +59,7 @@ public class Order {
     @PrePersist
     public void prePersist(){
         startDate = LocalDate.now();
+        isActive = true;
     }
 
 

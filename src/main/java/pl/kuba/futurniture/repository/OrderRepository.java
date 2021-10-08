@@ -18,9 +18,14 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByisActiveTrue();
 
+    List<Order> findByisImportantTrue();
+
     @Query("SELECT o FROM Order o WHERE o.shipDate < :now")
     List<Order> findAllDelayedOrders(@Param("now") LocalDate now);
 
     List<Order> findTop5ByOrderByStartDateDesc();
+
+
+    Optional<Order> findByProductsId(Long id);
 
 }

@@ -96,6 +96,23 @@ public class OrderController {
         return "redirect:/app/order";
     }
 
+    @GetMapping("/delay")
+    public String delayed(Model model){
+        model.addAttribute("ordersDelay", orderRepository.findAllDelayedOrders(LocalDate.now()));
+        return "order-delay";
+    }
+    @GetMapping("/important")
+    public String important(Model model){
+        model.addAttribute("ordersImportant", orderRepository.findByisImportantTrue());
+        return "order-important";
+    }
+    @GetMapping("/active")
+    public String active(Model model){
+        model.addAttribute("ordersActive", orderRepository.findAll());
+        return "order-active";
+    }
+
+
     @ModelAttribute("customers")
     public List<Customer> customerList(){
         return customerRepository.findAll();

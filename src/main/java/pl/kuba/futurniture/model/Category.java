@@ -1,13 +1,16 @@
 package pl.kuba.futurniture.model;
 
 import lombok.Data;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Entity
 @Table (name = "categories")
+@SQLDelete(sql = "UPDATE categories SET deleted = true WHERE id = ?")
+@Where(clause = "deleted=false")
 @Data
 public class Category {
 
@@ -16,8 +19,7 @@ public class Category {
     private Long id;
     @Size(min = 3, message = "Kategoria musi mieć conajmniej 3 znaki!")
     private String name;
-    @OneToMany
-    @JoinColumn(name="product_id")
-    List<Product> products;
+
+    private boolean deleted = Boolean.FALSE;
 
 }

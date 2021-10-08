@@ -5,10 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.kuba.futurniture.model.Category;
 import pl.kuba.futurniture.model.Product;
 import pl.kuba.futurniture.repository.CategoryRepository;
 import pl.kuba.futurniture.repository.ProductRepository;
+import pl.kuba.futurniture.service.ProductService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,6 +23,7 @@ public class ProductController {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ProductService productService;
 
     @GetMapping
     public String findAll(Model model){
@@ -42,9 +45,14 @@ public class ProductController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id){
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes){
         if(productRepository.existsById(id)){
-            productRepository.deleteById(id);
+            if(productService.checkProductBindings(id)){
+                productRepository.deleteById(id);
+            }else{
+                redirectAttributes.addFlashAttribute("errorMessage", "Produkt jest przypisany do zamówienia, nie można usunąć!");
+            }
+
         }
         return "redirect:/app/product";
     }

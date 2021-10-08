@@ -18,13 +18,13 @@
             <div class="collapse" id="collapseOrders">
                 <div class="card card-body">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/app/order/important">
                             <i class="fas fa-angle-right"></i>
                             Pilne
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/app/order/active">
                             <i class="fas fa-angle-right"></i>
                             W realizacji
                         </a>

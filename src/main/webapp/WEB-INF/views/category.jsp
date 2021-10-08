@@ -20,7 +20,7 @@
             </div>
             <h2>Wszystkie kategorie</h2>
             <div class="text-danger">
-                ${message}
+                ${errorMessage}
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
@@ -38,9 +38,10 @@
                             <td>${status.count}</td>
                             <td>${category.name}</td>
                             <td>
-                                <a href="/app/category/edit/${category.id}" class="btn btn-info">Edytuj</a>
-                                <button class="btn btn-primary">Produkty</button>
-                                <a href="/app/category/delete/${category.id}" class="btn btn-danger">Usuń</a>
+                                <div class="btn-group">
+                                    <a href="/app/category/edit/${category.id}" class="btn btn-info">Edytuj</a>
+                                    <a href="/app/category/delete/${category.id}" class="btn btn-danger">Usuń</a>
+                                </div>
                             </td>
 
                         </tr>
