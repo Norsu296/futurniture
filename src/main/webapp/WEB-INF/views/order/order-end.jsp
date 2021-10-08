@@ -4,12 +4,12 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <body>
 
 <div class="container-fluid">
     <div class="row">
-        <jsp:include page="nav.jsp"/>
+        <jsp:include page="../nav.jsp"/>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Podsumowanie zamówienia</h1>
@@ -18,10 +18,6 @@
                 </div>
             </div>
             <div class="orderConfirmation">
-                <div class="container-fluid d-flex flex-wrap justify-content-between" id="orderHeader">
-                    <div class="h4">Potwierdzenie zamówienia</div><div class="h5">Zamówienie numer ${order.id}/2021</div>
-                </div>
-                <hr>
                 <div class="customer container-fluid">
                     <div class="information">Dane klienta</div><span class="content">${order.customer.fullName}</span>
                     <p><div class="information">Adres dostawy</div><span class="content">${order.customer.address}<p>${order.customer.phone} ${order.customer.email}</p></span></p>
@@ -57,27 +53,23 @@
                     <div class="information">Status płatności</div>
                     <span class="content">
                     <c:choose>
-                        <c:when test="${order.paid == true}">
-                            Opłacone
-                        </c:when>
-                        <c:otherwise>
-                            Płatne przy odbiorze
-                        </c:otherwise>
-                    </c:choose>
+                    <c:when test="${order.paid == true}">
+                        Opłacone
+                    </c:when>
+                    <c:otherwise>
+                        Płatne przy odbiorze
+                    </c:otherwise>
+                </c:choose>
                 </span>
                 </div>
-                <div class="container-fluid d-flex flex-wrap justify-content-between">
-                    <div id="stamp"></div><div id="customerSign"></div>
+                <div class="btn-group">
+                    <a href="/app/order/finish/${order.id}" class="btn btn-success">Zakończ</a>
+                    <a href="/app/order/end/${order.id}/print" class="btn btn-info">Wydruk</a>
                 </div>
-                <div class="container-fluid d-flex flex-wrap justify-content-between">
-                    <p>Pieczątka i podpis</p><p>Podpis klienta</p>
-                </div>
-
             </div>
-            <button href="/app/order/finish/${order.id}" onclick="window.print();" class="noPrint btn btn-primary">Drukuj</button>
         </main>
     </div>
-</div>
+    </div>
 
 </div>
 

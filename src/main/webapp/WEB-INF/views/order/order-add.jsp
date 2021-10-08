@@ -4,14 +4,17 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <body>
 
 <div class="container-fluid">
     <div class="row">
-        <jsp:include page="nav.jsp"/>
+        <jsp:include page="../nav.jsp"/>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <h2>Edytuj zamówienie</h2>
+            <h2>Dodaj nowe zamówienie</h2>
+            <div class="">
+                <a href="/app/customer/add" class="btn btn-sm btn-warning">Nowy klient</a>
+            </div>
             <div class="mt-4">
                 <form:form method="post" modelAttribute="order">
                     <p><form:errors path="customer"/></p>
@@ -36,7 +39,7 @@
                         <form:select path="products" items="${products}" itemLabel="productInformation" itemValue="id" size="10"/>
                     </div>
                     <div class="btn-group">
-                        <input value="Edytuj" type="submit" class="btn btn-primary"></input>
+                        <input value="Dodaj" type="submit" class="btn btn-primary"></input>
                         <a href="/app/order" class="btn btn-danger">Anuluj</a>
                     </div>
                 </form:form>

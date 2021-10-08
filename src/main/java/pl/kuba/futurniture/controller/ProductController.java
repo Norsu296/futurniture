@@ -25,17 +25,17 @@ public class ProductController {
     @GetMapping
     public String findAll(Model model){
         model.addAttribute("products",productService.findAll());
-        return "product";
+        return "product/product";
     }
     @GetMapping("/add")
     public String addForm(Model model){
         model.addAttribute("product", new Product());
-        return "product-add";
+        return "product/product-add";
     }
     @PostMapping("/add")
     public String add(@Valid Product product, BindingResult result){
         if(result.hasErrors()){
-            return "product-add";
+            return "product/product-add";
         }
         productService.save(product);
         return "redirect:/app/product";
@@ -54,13 +54,13 @@ public class ProductController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model){
         model.addAttribute("product", productService.findById(id));
-        return "product-edit";
+        return "product/product-edit";
     }
 
     @PostMapping("/edit/{id}")
     public String editProduct(@PathVariable Long id, @Valid Product product, BindingResult result){
         if(result.hasErrors()){
-            return "product-edit";
+            return "product/product-edit";
         }
        productService.save(product);
         return "redirect:/app/product";

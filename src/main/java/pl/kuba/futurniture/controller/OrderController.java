@@ -31,25 +31,25 @@ public class OrderController {
     @GetMapping
     public String findAll(Model model){
         model.addAttribute("orders",orderService.findAll());
-        return "order";
+        return "order/order";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Long id, Model model){
         model.addAttribute("order",orderService.findById(id));
-        return "order-details";
+        return "order/order-details";
     }
 
     @GetMapping("/add")
     public String addForm(Model model){
         model.addAttribute("order", new Order());
-        return "order-add";
+        return "order/order-add";
     }
 
     @PostMapping("/add")
     public String add(@Valid Order order, BindingResult result){
         if(result.hasErrors()){
-            return "order-add";
+            return "order/order-add";
         }
         orderService.save(order);
         return "redirect:/app/order";
@@ -58,13 +58,13 @@ public class OrderController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model){
         model.addAttribute("order", orderService.findById(id));
-        return "order-edit";
+        return "order/order-edit";
     }
 
     @PostMapping("/edit/{id}")
     public String editOrder(@PathVariable Long id, @Valid Order order, BindingResult result){
         if(result.hasErrors()){
-            return "order-edit";
+            return "order/order-edit";
         }
         orderService.save(order);
         return "redirect:/app/order";
@@ -78,13 +78,13 @@ public class OrderController {
     @GetMapping("/end/{id}")
     public String endView(@PathVariable Long id, Model model){
         model.addAttribute("order", orderService.findById(id));
-        return "order-end";
+        return "order/order-end";
     }
 
     @GetMapping("/end/{id}/print")
     public String print(@PathVariable Long id, Model model){
         model.addAttribute("order", orderService.findById(id));
-        return "order-print";
+        return "order/order-print";
     }
     @GetMapping("/finish/{id}")
     public String finish(@PathVariable Long id){
@@ -95,17 +95,17 @@ public class OrderController {
     @GetMapping("/delay")
     public String delayed(Model model){
         model.addAttribute("ordersDelay", orderService.findDelayed());
-        return "order-delay";
+        return "order/order-delay";
     }
     @GetMapping("/important")
     public String important(Model model){
         model.addAttribute("ordersImportant", orderService.findImportant());
-        return "order-important";
+        return "order/order-important";
     }
     @GetMapping("/active")
     public String active(Model model){
         model.addAttribute("ordersActive", orderService.findActive());
-        return "order-active";
+        return "order/order-active";
     }
 
 

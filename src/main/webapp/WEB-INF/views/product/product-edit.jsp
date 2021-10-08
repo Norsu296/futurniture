@@ -6,14 +6,14 @@
 <html lang="en">
 
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <body>
 
 <div class="container-fluid">
     <div class="row">
-        <jsp:include page="nav.jsp"/>
+        <jsp:include page="../nav.jsp"/>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <h2>Dodaj nowy produkt</h2>
+            <h2>Edytuj produkt</h2>
             <form:form method="post" modelAttribute="product">
                 <div class="form-group">
                     <label for="name">Nazwa produktu</label>
@@ -28,7 +28,7 @@
 
                 </div>
                 <div class="btn-group">
-                    <input value="Dodaj" type="submit" class="btn btn-primary"></input>
+                    <input value="Edytuj" type="submit" class="btn btn-primary"></input>
                     <a href="/app/order" class="btn btn-danger">Anuluj</a>
                 </div>
             </form:form>

@@ -22,18 +22,18 @@ public class CategoryController {
     @GetMapping
     public String findAll(Model model){
         model.addAttribute("categories", categoryService.findAll());
-        return "category";
+        return "category/category";
     }
     @GetMapping("/add")
     public String addForm(Model model){
         model.addAttribute("category", new Category());
-        return "category-add";
+        return "category/category-add";
     }
 
     @PostMapping("/add")
     public String addCategory(@Valid Category category, BindingResult result){
         if(result.hasErrors()){
-            return "category-add";
+            return "category/category-add";
         }
         categoryService.save(category);
         return "redirect:/app/category";
@@ -53,13 +53,13 @@ public class CategoryController {
     @GetMapping("/edit/{id}")
     public String editCategory(@PathVariable Long id, Model model){
         model.addAttribute("category", categoryService.findById(id));
-        return "category-edit";
+        return "category/category-edit";
     }
 
     @PostMapping("/edit/{id}")
     public String editCategory(@PathVariable Long id, @Valid Category category, BindingResult result){
         if(result.hasErrors()){
-            return "category-edit";
+            return "category/category-edit";
         }
         categoryService.save(category);
         return "redirect:/app/category";

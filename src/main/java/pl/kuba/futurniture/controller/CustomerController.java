@@ -24,18 +24,18 @@ public class CustomerController {
     @GetMapping
     public String findAll(Model model){
         model.addAttribute("customers", customerService.findAll());
-        return "customer";
+        return "customer/customer";
     }
 
     @GetMapping("/add")
     public String addForm(Model model){
         model.addAttribute("customer", new Customer());
-        return "customer-add";
+        return "customer/customer-add";
     }
     @PostMapping("/add")
     public String add(@Valid Customer customer, BindingResult result){
         if(result.hasErrors()){
-            return "customer-add";
+            return "customer/customer-add";
         }
         customerService.save(customer);
         return "redirect:/app/customer";
@@ -43,13 +43,13 @@ public class CustomerController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model){
         model.addAttribute("customer", customerService.findById(id));
-        return "customer-edit";
+        return "customer/customer-edit";
     }
 
     @PostMapping("/edit/{id}")
     public String editProduct(@PathVariable Long id, @Valid Customer customer, BindingResult result){
         if(result.hasErrors()){
-            return "customer-edit";
+            return "customer/customer-edit";
         }
         customerService.save(customer);
         return "redirect:/app/customer";

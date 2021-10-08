@@ -5,12 +5,12 @@
 <html lang="en">
 
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <body>
 
 <div class="container-fluid">
     <div class="row">
-        <jsp:include page="nav.jsp"/>
+        <jsp:include page="../nav.jsp"/>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Zamówienia</h1>
@@ -18,7 +18,7 @@
                     <a href="/app/order" class="btn btn-sm btn-outline-secondary">Wszystkie zamówienia</a>
                 </div>
             </div>
-            <h2>Zamówienia pilne</h2>
+            <h2>Zamówienia po terminie</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
 
@@ -35,7 +35,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${ordersImportant}" var="order" varStatus="status">
+                    <c:forEach items="${ordersDelay}" var="order" varStatus="status">
                         <tr>
                             <td>${status.count}</td>
                             <td>${order.customer.name}</td>
