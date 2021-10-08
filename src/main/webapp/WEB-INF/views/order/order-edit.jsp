@@ -35,6 +35,8 @@
                     <div id="select">
                         <form:select path="products" items="${products}" itemLabel="productInformation" itemValue="id" size="10"/>
                     </div>
+                    <label for="description">Dodatkowe informacje</label>
+                    <form:input type="text" path="description" id="description"/>
                     <div class="btn-group">
                         <input value="Edytuj" type="submit" class="btn btn-primary"></input>
                         <a href="/app/order" class="btn btn-danger">Anuluj</a>

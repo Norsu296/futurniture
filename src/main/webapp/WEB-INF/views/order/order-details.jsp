@@ -27,6 +27,7 @@
                     </span>
                 </p>
                 <p><span class="title bg-secondary text-light mx-5 px-5">Termin realizacji: </span><span class="content bg-light text-dark">${order.shipDate}</span></p>
+                <p><span class="title bg-secondary text-light mx-5 px-5">Dodatkowe informacje: </span><span class="content bg-light text-dark">${order.description}</span></p>
 
             </div>
             <h3>Zamówione produkty</h3>

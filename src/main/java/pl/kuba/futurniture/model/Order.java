@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,11 +26,12 @@ public class Order {
     private boolean isPaid;
 
     @Column(name = "start_date")
-    private LocalDate startDate;
+    private LocalDate startDate = LocalDate.now();
 
     @Column(name = "end_date")
     private LocalDate endDate;
 
+    @NotNull
     @Future(message = "Data musi być z przyszłości")
     @Column(name = "ship_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -52,6 +54,13 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @Size(max = 250, message = "Opis nie może być dłuższy niż 250 znaków")
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "order_status")
+    private OrderStatus orderStatus;
+
 
     @ManyToMany
     private List<Product> products;
@@ -60,9 +69,7 @@ public class Order {
     public void prePersist(){
         startDate = LocalDate.now();
         isActive = true;
+        orderStatus = OrderStatus.accepted;
     }
-
-
-
 
 }

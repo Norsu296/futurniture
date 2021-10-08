@@ -21,7 +21,7 @@
                 <div class="customer container-fluid">
                     <div class="information">Dane klienta</div><span class="content">${order.customer.fullName}</span>
                     <p><div class="information">Adres dostawy</div><span class="content">${order.customer.address}<p>${order.customer.phone} ${order.customer.email}</p></span></p>
-
+                    <p><div class="information">Dodatkowe informacje</div><span class="content">${order.description}</span></p>
                 </div>
 
                 <h3>Zamówione produkty</h3>
