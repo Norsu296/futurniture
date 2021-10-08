@@ -49,8 +49,10 @@
                             <td>${customer.street}</td>
                             <td>${customer.number}</td>
                             <td>
-                                <a href="/app/customer/edit/${customer.id}" class="btn btn-info">Edytuj</a>
-                                <a href="/app/customer/delete/${customer.id}" class="btn btn-danger">Usuń</a>
+                                <div class="btn-group">
+                                    <a href="/app/customer/edit/${customer.id}" class="btn btn-info">Edytuj</a>
+                                    <a href="/app/customer/delete/${customer.id}" class="btn btn-danger">Usuń</a>
+                                </div>
                             </td>
 
                         </tr>

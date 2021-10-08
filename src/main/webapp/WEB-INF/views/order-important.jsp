@@ -18,7 +18,7 @@
                     <a href="/app/order" class="btn btn-sm btn-outline-secondary">Wszystkie zamówienia</a>
                 </div>
             </div>
-            <h2>Zamówienia po terminie</h2>
+            <h2>Zamówienia pilne</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
 

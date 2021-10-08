@@ -66,7 +66,7 @@
                     </div>
                     <div class="btn-group">
                         <input value="Dodaj" type="submit" class="btn btn-primary"></input>
-                        <a href="/app/category" class="btn btn-danger">Anuluj</a>
+                        <a href="/app/customer" class="btn btn-danger">Anuluj</a>
                     </div>
 
                 </form:form>
