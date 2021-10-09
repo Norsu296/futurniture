@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Controller
-@RequestMapping("/app/user")
+@RequestMapping("/admin/user")
 @RequiredArgsConstructor
 public class UserController {
 

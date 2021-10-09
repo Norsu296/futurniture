@@ -47,7 +47,7 @@
             </li>
             <hr>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/user">
                     <i class="fas fa-users-cog"></i>
                     Użytkownicy
                 </a>

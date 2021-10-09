@@ -1,6 +1,7 @@
 package pl.kuba.futurniture.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +40,7 @@ public class CategoryController {
         return "redirect:/app/category";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable Long id, RedirectAttributes redirectAttributes){
             if(categoryService.checkCategoryBindings(id)){

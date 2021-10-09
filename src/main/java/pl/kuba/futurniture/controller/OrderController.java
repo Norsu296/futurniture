@@ -1,6 +1,7 @@
 package pl.kuba.futurniture.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -71,6 +72,7 @@ public class OrderController {
         return "redirect:/app/order";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         if (orderService.checkOrderStatusBeforeDeletion(id)) {

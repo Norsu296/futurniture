@@ -1,6 +1,7 @@
 package pl.kuba.futurniture.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -55,6 +56,7 @@ public class CustomerController {
         return "redirect:/app/customer";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
             customerService.remove(id);
