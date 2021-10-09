@@ -18,7 +18,7 @@ public class MainPageController {
     public String mainPage(Model model) {
         model.addAttribute("numberOfActiveOrders", orderService.filterByStatus("inprogress").size());
         model.addAttribute("numberOfDelayedOrders", orderService.filterByStatus("delayed").size());
-        model.addAttribute("numberOfAllOrders", orderService.findAll().size());
+        model.addAttribute("numberOfAllOrders", orderService.findAllByDeleted().size());
         model.addAttribute("waitingOrders", orderService.filterByStatus("accepted"));
         model.addAttribute("numberOfWaitingOrders", orderService.filterByStatus("accepted").size());
         return "dashboard";
