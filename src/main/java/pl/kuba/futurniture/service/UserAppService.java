@@ -1,6 +1,8 @@
 package pl.kuba.futurniture.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.kuba.futurniture.model.UserApp;
@@ -18,6 +20,15 @@ public class UserAppService {
     public void addUser(UserApp userApp){
         userApp.setPassword(passwordEncoder.encode(userApp.getPassword()));
         userAppRepository.save(userApp);
+    }
+
+    public String loggedUser(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal instanceof UserDetails){
+            return  ((UserDetails) principal).getUsername();
+        }else {
+            return principal.toString();
+        }
     }
 
     public List<UserApp> findAll(){
