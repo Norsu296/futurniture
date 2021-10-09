@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import pl.kuba.futurniture.model.UserApp;
 import pl.kuba.futurniture.repository.UserAppRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserAppService {
@@ -16,6 +18,10 @@ public class UserAppService {
     public void addUser(UserApp userApp){
         userApp.setPassword(passwordEncoder.encode(userApp.getPassword()));
         userAppRepository.save(userApp);
+    }
+
+    public List<UserApp> findAll(){
+        return userAppRepository.findAll();
     }
 
 }

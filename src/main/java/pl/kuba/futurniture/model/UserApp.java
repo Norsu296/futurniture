@@ -1,6 +1,7 @@
 package pl.kuba.futurniture.model;
 
 import lombok.Data;
+import org.hibernate.annotations.SQLDelete;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,6 +10,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "users_app")
+@SQLDelete(sql = "UPDATE users_app SET deleted = true WHERE id = ?")
 @Data
 public class UserApp implements UserDetails {
 
@@ -19,6 +21,7 @@ public class UserApp implements UserDetails {
     private String password;
     private UserRole userRole;
     private boolean isEnabled;
+    private boolean deleted;
 
 
 
@@ -54,6 +57,6 @@ public class UserApp implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }

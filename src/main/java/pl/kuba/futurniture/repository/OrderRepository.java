@@ -21,6 +21,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("SELECT o FROM Order o WHERE o.shipDate < :now AND o.orderStatus = 'inProgress'")
     List<Order> findAllDelayedOrders(@Param("now") LocalDate now);
     List<Order> findAllByOrderStatus(OrderStatus orderStatus);
+    List<Order> findAllByDeleted(boolean deleted);
     Optional<Order> findByProductsId(Long id);
 
 }

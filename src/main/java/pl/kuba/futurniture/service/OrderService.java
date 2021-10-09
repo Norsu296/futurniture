@@ -78,4 +78,8 @@ public class OrderService {
         }
         return true;
     }
+
+    public List<Order> findAllByDeleted() {
+        return orderRepository.findAllByDeleted(false);
+    }
 }
