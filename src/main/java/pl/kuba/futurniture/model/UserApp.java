@@ -6,6 +6,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
@@ -17,8 +20,11 @@ public class UserApp implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    @Size(min = 3, max = 30, message = "Nazwa użytkownika nie może być krótsza niż 3 znaki i dłuższa niż 30 znaków")
     private String username;
     private String password;
+    @NotNull
     private UserRole userRole;
     private boolean isEnabled;
     private boolean deleted;
@@ -58,5 +64,10 @@ public class UserApp implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isEnabled;
+    }
+
+    @PrePersist
+    public void prePersist(){
+        isEnabled = true;
     }
 }
