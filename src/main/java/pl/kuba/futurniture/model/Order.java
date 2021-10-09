@@ -2,6 +2,7 @@ package pl.kuba.futurniture.model;
 
 
 import lombok.Data;
+import org.hibernate.annotations.SQLDelete;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Entity
 @Table (name = "orders")
+@SQLDelete(sql = "UPDATE orders SET deleted = true WHERE id = ?")
 @Data
 public class Order {
 
@@ -61,6 +63,8 @@ public class Order {
     @Column(name = "order_status")
     private OrderStatus orderStatus;
 
+
+    private boolean deleted;
 
     @ManyToMany
     private List<Product> products;
