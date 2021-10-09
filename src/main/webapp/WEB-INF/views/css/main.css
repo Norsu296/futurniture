@@ -147,3 +147,7 @@ body {
     height: 70px;
     border-bottom: solid 2px;
 }
+
+.details {
+    margin-bottom: 5px;
+}

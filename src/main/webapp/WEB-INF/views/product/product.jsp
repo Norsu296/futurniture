@@ -18,11 +18,23 @@
                     <a href="/app/product/add" class="btn btn-sm btn-outline-secondary">Nowy produkt</a>
                 </div>
             </div>
-            <h2>Wszystkie produkty</h2>
             <div class="text-danger">
                 ${errorMessage}
             </div>
-
+            <div class="btn-group mb-5" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Filtruj
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <li><a class="dropdown-item" href="/app/product">Wszystkie</a></li>
+                    <li><a class="dropdown-item" href="/app/product/available">Dostępne</a></li>
+                    <li><a class="dropdown-item" href="/app/product/unavailable">Niedostępne</a></li>
+                    <c:forEach items="${categories}" var="category">
+                        <li><a class="dropdown-item" href="/app/product/filter/${category.id}">${category.name}</a></li>
+                    </c:forEach>
+                </ul>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
 

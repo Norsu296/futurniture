@@ -86,12 +86,22 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <c:if test="${order.orderStatus != 'ended'}">
-                                        <a href="/app/order/end/${order.id}" class="btn btn-success">Zakończ</a>
-                                        <a href="/app/order/edit/${order.id}" class="btn btn-info">Edytuj</a>
-                                    </c:if>
-                                    <a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a>
-                                    <a href="/app/order/delete/${order.id}" class="btn btn-danger">Usuń</a>
+                                    <c:choose>
+                                        <c:when test="${order.orderStatus == 'accepted'}">
+                                            <a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a>
+                                            <a href="/app/order/delete/${order.id}" class="btn btn-danger">Usuń</a>
+                                        </c:when>
+                                        <c:when test="${order.orderStatus == 'inProgress'}">
+                                            <a href="/app/order/end/${order.id}" class="btn btn-success">Zakończ</a>
+                                            <a href="/app/order/edit/${order.id}" class="btn btn-info">Edytuj</a>
+                                            <a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a>
+                                            <a href="/app/order/delete/${order.id}" class="btn btn-danger">Usuń</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a>
+                                            <a href="/app/order/delete/${order.id}" class="btn btn-danger">Usuń</a>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </td>
 

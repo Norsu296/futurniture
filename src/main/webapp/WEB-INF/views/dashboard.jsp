@@ -39,7 +39,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-danger">${numberOfDelayedOrders}</h5>
                                 <p class="card-text">Zamówienia po terminie</p>
-                                <a href="/app/order/delay" class="btn btn-danger">Podgląd</a>
+                                <a href="/app/order/delayed" class="btn btn-danger">Podgląd</a>
                             </div>
                         </div>
                     </div>

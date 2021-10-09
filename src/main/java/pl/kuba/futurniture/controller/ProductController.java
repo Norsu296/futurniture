@@ -71,6 +71,16 @@ public class ProductController {
         productService.changeAvailable(id);
         return "redirect:/app/product";
     }
+    @GetMapping("/{available}")
+    public String filterByAvailable(@PathVariable String available, Model model){
+        model.addAttribute("products", productService.filterByAvailable(available));
+        return "product/product";
+    }
+    @GetMapping("/filter/{categoryId}")
+    public String filterByCategory(@PathVariable Long categoryId, Model model){
+        model.addAttribute("products", productService.filterByCategory(categoryId));
+        return "product/product";
+    }
 
     @ModelAttribute("categories")
     public List<Category> categoryList(){

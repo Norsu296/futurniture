@@ -26,7 +26,7 @@ public class Customer {
     private String surname;
 
     @NotBlank
-    @Size(min = 3, max = 20, message = "Miasto musi mieć długość od 3 do 20 znaków!")
+    @Size(min = 3, max = 50, message = "Miasto musi mieć długość od 3 do 20 znaków!")
     private String city;
 
     @NotBlank
