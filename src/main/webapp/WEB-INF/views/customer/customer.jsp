@@ -52,7 +52,7 @@
                             <td>
                                 <div class="btn-group">
                                     <a href="/app/customer/edit/${customer.id}" class="btn btn-info">Edytuj</a>
-                                    <a href="/app/customer/delete/${customer.id}" class="btn btn-danger">Usuń</a>
+                                    <a href="/app/customer/delete/${customer.id}" onclick="return confirm('Czy na pewno usunąć? Operacja jest nieodwracalna!');" class="btn btn-danger">Usuń</a>
                                 </div>
                             </td>
 

@@ -40,7 +40,7 @@
                             <td>
                                 <div class="btn-group">
                                     <a href="/app/category/edit/${category.id}" class="btn btn-info">Edytuj</a>
-                                    <a href="/app/category/delete/${category.id}" class="btn btn-danger">Usuń</a>
+                                    <a href="/app/category/delete/${category.id}" onclick="return confirm('Czy na pewno usunąć? Operacja jest nieodwracalna!');" class="btn btn-danger">Usuń</a>
                                 </div>
                             </td>
 

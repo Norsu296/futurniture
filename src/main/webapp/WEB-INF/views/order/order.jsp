@@ -89,17 +89,17 @@
                                     <c:choose>
                                         <c:when test="${order.orderStatus == 'accepted'}">
                                             <a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a>
-                                            <a href="/app/order/delete/${order.id}" class="btn btn-danger">Usuń</a>
+                                            <a href="/app/order/delete/${order.id}" onclick="return confirm('Czy na pewno usunąć? Operacja jest nieodwracalna!');" class="btn btn-danger">Usuń</a>
                                         </c:when>
                                         <c:when test="${order.orderStatus == 'inProgress'}">
                                             <a href="/app/order/end/${order.id}" class="btn btn-success">Zakończ</a>
                                             <a href="/app/order/edit/${order.id}" class="btn btn-info">Edytuj</a>
                                             <a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a>
-                                            <a href="/app/order/delete/${order.id}" class="btn btn-danger">Usuń</a>
+                                            <a href="/app/order/delete/${order.id}" onclick="return confirm('Czy na pewno usunąć? Operacja jest nieodwracalna!');" class="btn btn-danger">Usuń</a>
                                         </c:when>
                                         <c:otherwise>
                                             <a href="/app/order/details/${order.id}" class="btn btn-warning">Szczegóły</a>
-                                            <a href="/app/order/delete/${order.id}" class="btn btn-danger">Usuń</a>
+                                            <a href="/app/order/delete/${order.id}" onclick="return confirm('Czy na pewno usunąć? Operacja jest nieodwracalna!');" class="btn btn-danger">Usuń</a>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
