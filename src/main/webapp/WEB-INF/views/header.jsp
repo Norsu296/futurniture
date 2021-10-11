@@ -28,7 +28,7 @@
     <span class="text-light">Zalogowany jako <span class="text-bold mx-1"><strong>${loggedUser}</strong></span> , ${date}</span>
     <div class="navbar-nav">
         <div class="nav-item ">
-            <a class="nav-link px-3" href="#">Wyloguj</a>
+            <a class="nav-link px-3" href="/logout">Wyloguj</a>
         </div>
     </div>
 </header>

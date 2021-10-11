@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.kuba.futurniture.user.model.UserApp;
 import pl.kuba.futurniture.user.model.UserRole;
 import pl.kuba.futurniture.user.service.UserAppService;
@@ -42,6 +39,11 @@ public class UserController {
         System.out.println(userApp);
         userAppService.addUser(userApp);
         return "user/user";
+    }
+    @GetMapping("/block/{id}")
+    public String block(@PathVariable Long id){
+        userAppService.block(id);
+        return "redirect:/admin/user";
     }
 
 

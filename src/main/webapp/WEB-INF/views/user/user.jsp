@@ -52,14 +52,21 @@
                                             Aktywny
                                         </c:when>
                                         <c:otherwise>
-                                            Wyłączony
+                                            Zablokowany
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="/app/customer/edit/${user.id}" class="btn btn-info">Edytuj</a>
-                                        <a href="/app/customer/delete/${user.id}" onclick="return confirm('Czy na pewno usunąć? Operacja jest nieodwracalna!');" class="btn btn-danger">Usuń</a>
+                                        <c:choose>
+                                            <c:when test="${user.enabled}">
+                                                <a href="/admin/user/block/${user.id}" class="btn btn-secondary">Zablokuj</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="/admin/user/block/${user.id}" class="btn btn-secondary">Odblokuj</a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <a href="/admin/user/delete/${user.id}" onclick="return confirm('Czy na pewno usunąć? Operacja jest nieodwracalna!');" class="btn btn-danger">Usuń</a>
                                     </div>
                                 </td>
 

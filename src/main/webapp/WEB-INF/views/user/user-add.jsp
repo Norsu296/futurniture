@@ -38,7 +38,7 @@
                     </div>
                     <div class="btn-group mt-5">
                         <input value="Dodaj" type="submit" class="btn btn-primary"></input>
-                        <a href="/app/user" class="btn btn-danger">Anuluj</a>
+                        <a href="/admin/user" class="btn btn-danger">Anuluj</a>
                     </div>
 
                 </form:form>

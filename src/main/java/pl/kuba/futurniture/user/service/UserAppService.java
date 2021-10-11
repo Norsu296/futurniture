@@ -31,6 +31,13 @@ public class UserAppService {
         }
     }
 
+    public void block(Long id){
+        UserApp userApp = userAppRepository.getById(id);
+        userApp.setEnabled(!userApp.isEnabled());
+        userAppRepository.save(userApp);
+    }
+
+
     public List<UserApp> findAll(){
         return userAppRepository.findAll();
     }
