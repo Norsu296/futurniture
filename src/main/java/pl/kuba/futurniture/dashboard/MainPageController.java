@@ -24,7 +24,6 @@ public class MainPageController {
         model.addAttribute("numberOfAllOrders", orderService.findAllByDeleted().size());
         model.addAttribute("waitingOrders", orderService.filterByStatus("accepted"));
         model.addAttribute("numberOfWaitingOrders", orderService.filterByStatus("accepted").size());
-        model.addAttribute("loggedUser", userAppService.loggedUser());
         model.addAttribute("date", LocalDate.now());
         return "dashboard";
     }
