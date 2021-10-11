@@ -18,6 +18,9 @@
                     <a href="/admin/user/add" class="btn btn-sm btn-outline-secondary">Nowy użytkownik</a>
                 </div>
             </div>
+            <div class="text-danger">
+                ${errorMessage}
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
 
@@ -66,6 +69,7 @@
                                                 <a href="/admin/user/block/${user.id}" class="btn btn-secondary">Odblokuj</a>
                                             </c:otherwise>
                                         </c:choose>
+                                        <a href="/admin/user/role/${user.id}" class="btn btn-info">Zmień uprawnienia</a>
                                         <a href="/admin/user/delete/${user.id}" onclick="return confirm('Czy na pewno usunąć? Operacja jest nieodwracalna!');" class="btn btn-danger">Usuń</a>
                                     </div>
                                 </td>

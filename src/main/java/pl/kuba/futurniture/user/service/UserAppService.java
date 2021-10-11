@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.kuba.futurniture.user.model.UserApp;
+import pl.kuba.futurniture.user.model.UserRole;
 import pl.kuba.futurniture.user.repository.UserAppRepository;
 
 import java.util.List;
@@ -29,6 +30,24 @@ public class UserAppService {
         }else {
             return principal.toString();
         }
+    }
+
+    public boolean checkUserIsNotDefaultAdmin(Long id){
+        if(userAppRepository.getById(id).getUsername().equals("admin")){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public void changeRole(Long id){
+        UserApp userApp = userAppRepository.getById(id);
+        if(userApp.getUserRole() == UserRole.ROLE_ADMIN){
+            userApp.setUserRole(UserRole.ROLE_USER);
+        }else{
+            userApp.setUserRole(UserRole.ROLE_ADMIN);
+        }
+        userAppRepository.save(userApp);
     }
 
     public void block(Long id){

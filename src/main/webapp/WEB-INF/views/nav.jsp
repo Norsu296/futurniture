@@ -53,12 +53,5 @@
                 </a>
             </li>
             <hr>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-user-cog"></i>
-                    Konto
-                </a>
-            </li>
-            <hr>
         </ul>
 </nav>

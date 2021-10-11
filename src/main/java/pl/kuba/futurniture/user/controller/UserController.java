@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.kuba.futurniture.user.model.UserApp;
 import pl.kuba.futurniture.user.model.UserRole;
 import pl.kuba.futurniture.user.service.UserAppService;
@@ -41,8 +42,21 @@ public class UserController {
         return "user/user";
     }
     @GetMapping("/block/{id}")
-    public String block(@PathVariable Long id){
-        userAppService.block(id);
+    public String block(@PathVariable Long id, RedirectAttributes redirectAttributes){
+        if(userAppService.checkUserIsNotDefaultAdmin(id)){
+            userAppService.block(id);
+        }else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Domyślny użytkownik, nie można wykonać akcji!");
+        }
+        return "redirect:/admin/user";
+    }
+    @GetMapping("/role/{id}")
+    public String changeRole(@PathVariable Long id, RedirectAttributes redirectAttributes){
+        if(userAppService.checkUserIsNotDefaultAdmin(id)){
+            userAppService.changeRole(id);
+        }else{
+            redirectAttributes.addFlashAttribute("errorMessage", "Domyślny użytkownik, nie można wykonać akcji!");
+        }
         return "redirect:/admin/user";
     }
 
