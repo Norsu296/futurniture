@@ -32,6 +32,10 @@ public class MainPageController {
     public String login(){
         return "login";
     }
+    @GetMapping("/accessDenied")
+    public String accessDenied(){
+        return "403";
+    }
 
 
 }

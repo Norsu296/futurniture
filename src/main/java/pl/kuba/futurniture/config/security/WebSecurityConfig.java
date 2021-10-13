@@ -37,10 +37,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable();
         http.authorizeRequests()
                 .antMatchers("/app/**").authenticated()
-                .antMatchers("/app/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/app");
+                .defaultSuccessUrl("/app")
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/accessDenied");
+
     }
 }
