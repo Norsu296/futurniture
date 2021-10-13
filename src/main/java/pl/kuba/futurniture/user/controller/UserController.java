@@ -60,7 +60,6 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
-
     @ModelAttribute("userRoles")
     public List<String> userRoleList(){
         return Stream.of(UserRole.values())

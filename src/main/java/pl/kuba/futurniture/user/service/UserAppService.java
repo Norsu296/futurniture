@@ -22,6 +22,9 @@ public class UserAppService {
         userApp.setPassword(passwordEncoder.encode(userApp.getPassword()));
         userAppRepository.save(userApp);
     }
+    public UserApp findById(Long id){
+        return userAppRepository.findById(id).get();
+    }
 
     public String loggedUser(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -56,6 +59,11 @@ public class UserAppService {
         userAppRepository.save(userApp);
     }
 
+    public void changePassword(Long id, String password){
+        UserApp userApp = userAppRepository.getById(id);
+        userApp.setPassword(passwordEncoder.encode(password));
+        userAppRepository.save(userApp);
+    }
 
     public List<UserApp> findAll(){
         return userAppRepository.findAll();
