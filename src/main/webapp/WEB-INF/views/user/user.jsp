@@ -44,6 +44,9 @@
                                         <c:when test="${user.userRole == 'ROLE_ADMIN'}">
                                             Administrator
                                         </c:when>
+                                        <c:when test="${user.userRole == 'ROLE_STAFF'}">
+                                            Produkcja
+                                        </c:when>
                                         <c:otherwise>
                                             Użytkownik
                                         </c:otherwise>

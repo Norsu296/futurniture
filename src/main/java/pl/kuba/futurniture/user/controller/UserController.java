@@ -1,6 +1,6 @@
 package pl.kuba.futurniture.user.controller;
 
-import lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor;import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,7 +39,7 @@ public class UserController {
         }
         System.out.println(userApp);
         userAppService.create(userApp);
-        return "user/user";
+        return "redirect:/admin/user";
     }
 
     @GetMapping("/edit/{id}")
