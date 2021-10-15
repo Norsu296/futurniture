@@ -18,8 +18,15 @@ public class UserAppService {
     private final UserAppRepository userAppRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public void addUser(UserApp userApp){
+    public void create(UserApp userApp){
         userApp.setPassword(passwordEncoder.encode(userApp.getPassword()));
+        userAppRepository.save(userApp);
+    }
+    public void edit(Long id, UserApp newUserApp){
+        UserApp userApp = userAppRepository.findById(id).get();
+        userApp.setUsername(newUserApp.getUsername());
+        userApp.setUserRole(newUserApp.getUserRole());
+        userApp.setEnabled(newUserApp.isEnabled());
         userAppRepository.save(userApp);
     }
     public UserApp findById(Long id){
@@ -43,27 +50,6 @@ public class UserAppService {
         }
     }
 
-    public void changeRole(Long id){
-        UserApp userApp = userAppRepository.getById(id);
-        if(userApp.getUserRole() == UserRole.ROLE_ADMIN){
-            userApp.setUserRole(UserRole.ROLE_USER);
-        }else{
-            userApp.setUserRole(UserRole.ROLE_ADMIN);
-        }
-        userAppRepository.save(userApp);
-    }
-
-    public void block(Long id){
-        UserApp userApp = userAppRepository.getById(id);
-        userApp.setEnabled(!userApp.isEnabled());
-        userAppRepository.save(userApp);
-    }
-
-    public void changePassword(Long id, String password){
-        UserApp userApp = userAppRepository.getById(id);
-        userApp.setPassword(passwordEncoder.encode(password));
-        userAppRepository.save(userApp);
-    }
 
     public List<UserApp> findAll(){
         return userAppRepository.findAll();

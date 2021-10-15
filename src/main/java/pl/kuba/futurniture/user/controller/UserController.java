@@ -38,25 +38,26 @@ public class UserController {
             return "user/user-add";
         }
         System.out.println(userApp);
-        userAppService.addUser(userApp);
+        userAppService.create(userApp);
         return "user/user";
     }
-    @GetMapping("/block/{id}")
-    public String block(@PathVariable Long id, RedirectAttributes redirectAttributes){
-        if(userAppService.checkUserIsNotDefaultAdmin(id)){
-            userAppService.block(id);
-        }else {
-            redirectAttributes.addFlashAttribute("errorMessage", "Domyślny użytkownik, nie można wykonać akcji!");
-        }
-        return "redirect:/admin/user";
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model){
+        model.addAttribute("userApp", userAppService.findById(id));
+        return "user/user-edit";
     }
-    @GetMapping("/role/{id}")
-    public String changeRole(@PathVariable Long id, RedirectAttributes redirectAttributes){
-        if(userAppService.checkUserIsNotDefaultAdmin(id)){
-            userAppService.changeRole(id);
-        }else{
-            redirectAttributes.addFlashAttribute("errorMessage", "Domyślny użytkownik, nie można wykonać akcji!");
+
+    @PostMapping("/edit/{id}")
+    public String editUser(@PathVariable Long id, @Valid UserApp userApp, BindingResult result, RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "user/user-edit";
         }
+        if(!userAppService.checkUserIsNotDefaultAdmin(id)) {
+            redirectAttributes.addFlashAttribute("error", "Użytkownik domyślny, nie można edytować!");
+            return "redirect:/admin/user/edit/"+id;
+        }
+        userAppService.edit(id, userApp);
         return "redirect:/admin/user";
     }
 
