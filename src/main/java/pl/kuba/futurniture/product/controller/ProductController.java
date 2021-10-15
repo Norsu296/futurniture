@@ -83,6 +83,11 @@ public class ProductController {
         model.addAttribute("products", productService.filterByCategory(categoryId));
         return "product/product";
     }
+    @GetMapping("/search")
+    public String search(@RequestParam(name = "keyword") String keyword, Model model){
+        model.addAttribute("products", productService.search(keyword));
+        return "product/product";
+    }
 
     @ModelAttribute("categories")
     public List<Category> categoryList(){

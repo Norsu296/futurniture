@@ -6,6 +6,8 @@ import pl.kuba.futurniture.product.model.Product;
 import pl.kuba.futurniture.order.repository.OrderRepository;
 import pl.kuba.futurniture.product.repository.ProductRepository;
 
+import javax.persistence.EntityManager;
+import javax.swing.text.html.parser.Entity;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
-
+    private final EntityManager entityManager;
 
     public void save(Product product){
         productRepository.save(product);
@@ -52,7 +54,10 @@ public class ProductService {
             return false;
         }
         return true;
+    }
 
+    public List<Product> search(String keyword){
+        return productRepository.search(keyword);
     }
 
 }
