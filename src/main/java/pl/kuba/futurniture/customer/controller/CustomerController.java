@@ -5,10 +5,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.kuba.futurniture.customer.model.Customer;
 import pl.kuba.futurniture.customer.service.CustomerService;
 
@@ -60,6 +57,12 @@ public class CustomerController {
     public String delete(@PathVariable Long id){
             customerService.remove(id);
         return "redirect:/app/customer";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam(name = "keyword") String keyword, Model model){
+        model.addAttribute("customers", customerService.search(keyword));
+        return "customer/customer";
     }
 
 

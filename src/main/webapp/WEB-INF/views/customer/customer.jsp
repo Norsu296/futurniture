@@ -18,7 +18,19 @@
                     <a href="/app/customer/add" class="btn btn-sm btn-outline-secondary">Dodaj klienta</a>
                 </div>
             </div>
-            <h2>Wszyscy klienci</h2>
+            <div class="text-danger">
+                ${errorMessage}
+            </div>
+            <div class="col-md-9 d-flex align-item-center">
+                <form method="get" action="/app/customer/search">
+                    <div class="input-group rounded">
+                        <input type="search" class="form-control rounded" name="keyword" placeholder="Szukaj"/>
+                        <button type="submit" class="input-group-text border-0" id="search-addon">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
 

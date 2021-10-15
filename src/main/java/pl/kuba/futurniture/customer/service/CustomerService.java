@@ -25,5 +25,8 @@ public class CustomerService {
     public Customer findById(Long id){
         return customerRepository.findById(id).get();
     }
+    public List<Customer> search(String keyword){
+        return customerRepository.search(keyword);
+    }
 
 }
