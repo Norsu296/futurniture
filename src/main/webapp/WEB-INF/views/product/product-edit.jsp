@@ -29,7 +29,7 @@
                 </div>
                 <div class="btn-group">
                     <input value="Edytuj" type="submit" class="btn btn-primary"></input>
-                    <a href="/app/order" class="btn btn-danger">Anuluj</a>
+                    <a href="/app/product" class="btn btn-danger">Anuluj</a>
                 </div>
             </form:form>
         </main>

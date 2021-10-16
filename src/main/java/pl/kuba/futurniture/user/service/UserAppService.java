@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.kuba.futurniture.user.model.UserApp;
-import pl.kuba.futurniture.user.model.UserRole;
 import pl.kuba.futurniture.user.repository.UserAppRepository;
 
 import java.util.List;

@@ -30,7 +30,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-success">${numberOfActiveOrders}</h5>
                                 <p class="card-text">Zamówienia w realizacji</p>
-                                <a href="/app/order/active" class="btn btn-success">Podgląd</a>
+                                <a href="/app/order/inprogress" class="btn btn-success">Podgląd</a>
                             </div>
                         </div>
                     </div>
