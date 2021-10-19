@@ -1,6 +1,6 @@
 package pl.kuba.futurniture.user.controller;
 
-import lombok.RequiredArgsConstructor;import org.springframework.security.core.parameters.P;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.kuba.futurniture.user.model.UserApp;
 import pl.kuba.futurniture.user.model.UserRole;
-import pl.kuba.futurniture.user.service.UserAppService;
+import pl.kuba.futurniture.user.service.UserAppServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,11 +20,11 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserAppService userAppService;
+    private final UserAppServiceImpl userAppServiceImpl;
 
     @GetMapping
     public String findAll(Model model){
-        model.addAttribute("users", userAppService.findAll());
+        model.addAttribute("users", userAppServiceImpl.findAll());
         return "user/user";
     }
     @GetMapping("/add")
@@ -38,13 +38,13 @@ public class UserController {
             return "user/user-add";
         }
         System.out.println(userApp);
-        userAppService.create(userApp);
+        userAppServiceImpl.create(userApp);
         return "redirect:/admin/user";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model){
-        model.addAttribute("userApp", userAppService.findById(id));
+        model.addAttribute("userApp", userAppServiceImpl.findById(id));
         return "user/user-edit";
     }
 
@@ -53,11 +53,16 @@ public class UserController {
         if(result.hasErrors()){
             return "user/user-edit";
         }
-        if(!userAppService.checkUserIsNotDefaultAdmin(id)) {
+        if(!userAppServiceImpl.checkUserIsNotDefaultAdmin(id)) {
             redirectAttributes.addFlashAttribute("error", "Użytkownik domyślny, nie można edytować!");
             return "redirect:/admin/user/edit/"+id;
         }
-        userAppService.edit(id, userApp);
+        userAppServiceImpl.edit(id, userApp);
+        return "redirect:/admin/user";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        userAppServiceImpl.remove(id);
         return "redirect:/admin/user";
     }
 

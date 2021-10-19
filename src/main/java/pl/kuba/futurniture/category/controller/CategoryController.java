@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.kuba.futurniture.category.model.Category;
-import pl.kuba.futurniture.category.service.CategoryService;
+import pl.kuba.futurniture.category.service.CategoryServiceImpl;
 
 
 import javax.validation.Valid;
@@ -18,11 +18,11 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class CategoryController {
 
-    private final CategoryService categoryService;
+    private final CategoryServiceImpl categoryServiceImpl;
 
     @GetMapping
     public String findAll(Model model){
-        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("categories", categoryServiceImpl.findAll());
         return "category/category";
     }
     @GetMapping("/add")
@@ -36,15 +36,15 @@ public class CategoryController {
         if(result.hasErrors()){
             return "category/category-add";
         }
-        categoryService.save(category);
+        categoryServiceImpl.save(category);
         return "redirect:/app/category";
     }
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable Long id, RedirectAttributes redirectAttributes){
-            if(categoryService.checkCategoryBindings(id)){
-                categoryService.remove(id);
+            if(categoryServiceImpl.checkCategoryBindings(id)){
+                categoryServiceImpl.remove(id);
             }else{
                 redirectAttributes.addFlashAttribute("errorMessage", "Nie można usunąć kategorii która ma produkty!");
             }
@@ -54,7 +54,7 @@ public class CategoryController {
 
     @GetMapping("/edit/{id}")
     public String editCategory(@PathVariable Long id, Model model){
-        model.addAttribute("category", categoryService.findById(id));
+        model.addAttribute("category", categoryServiceImpl.findById(id));
         return "category/category-edit";
     }
 
@@ -63,7 +63,7 @@ public class CategoryController {
         if(result.hasErrors()){
             return "category/category-edit";
         }
-        categoryService.save(category);
+        categoryServiceImpl.save(category);
         return "redirect:/app/category";
     }
 
