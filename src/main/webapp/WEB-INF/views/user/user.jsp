@@ -41,10 +41,10 @@
                                 <td>${user.username}</td>
                                 <td>
                                     <c:choose>
-                                        <c:when test="${user.userRole == 'ROLE_ADMIN'}">
+                                        <c:when test="${user.userRole == 'ADMIN'}">
                                             Administrator
                                         </c:when>
-                                        <c:when test="${user.userRole == 'ROLE_STAFF'}">
+                                        <c:when test="${user.userRole == 'STAFF'}">
                                             Produkcja
                                         </c:when>
                                         <c:otherwise>

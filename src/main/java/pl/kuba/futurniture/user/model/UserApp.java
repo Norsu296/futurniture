@@ -25,6 +25,7 @@ public class UserApp implements UserDetails {
     private String username;
     private String password;
     @NotNull
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
     private boolean isEnabled;
     private boolean deleted;
