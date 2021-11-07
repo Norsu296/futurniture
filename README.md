@@ -1,5 +1,5 @@
 # Futurniture
-A simple application for order processing in a small company. The application allows adding and managing products, categories, customers, users along with validation of the entered data. The application is currently under constant development. I am not a frontend devoloper so the application is not very beautiful. 
+A simple application for order processing in a small company. The application allows adding and managing products, categories, customers, users along with validation of the entered data.
 ## Used technologies: 
 * Java
 * Spring boot
